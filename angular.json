@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "zoneless-app-test": {
+    "dropdown-custom-app-test": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/zoneless-app-test",
+            "outputPath": "dist/dropdown-custom-app-test",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -25,7 +25,9 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
+            "assets": [  
+              "src/favicon.ico",
+              "src/assets",
               {
                 "glob": "**/*",
                 "input": "public"
@@ -64,10 +66,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "zoneless-app-test:build:production"
+              "buildTarget": "dropdown-custom-app-test:build:production"
             },
             "development": {
-              "buildTarget": "zoneless-app-test:build:development"
+              "buildTarget": "dropdown-custom-app-test:build:development"
             }
           },
           "defaultConfiguration": "development"

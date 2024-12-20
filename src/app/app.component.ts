@@ -1,12 +1,22 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { DropdownCustomComponent } from './components/dropdown-custom/dropdown-custom.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  standalone: true,
+  imports: [DropdownCustomComponent],
+  template: `
+    <h2>Приложение Custom Dropdown</h2>
+    <app-dropdown-custom></app-dropdown-custom>
+  `,
+  styles: [
+    `
+      h1 {
+        text-align: center;
+        margin-top: 20px;
+        color: #333;
+      }
+    `,
+  ],
 })
-export class AppComponent {
-  title = 'zoneless-app-test';
-}
+export class AppComponent {}

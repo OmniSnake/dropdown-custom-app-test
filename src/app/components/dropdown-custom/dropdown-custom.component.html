@@ -1,0 +1,52 @@
+<div class="dropdown-container" (click)="$event.stopPropagation()">
+  <button (click)="toggleList()" class="toggle-button">
+    <span class="toggle-icon-box">
+      <span *ngIf="!isListOpen()" class="toggle-icon">+</span>
+      <span *ngIf="isListOpen()" class="toggle-icon">−</span>
+    </span>
+    <span class="selected-count-text">
+      {{ selectedFunnels() }} воронки, {{ selectedStages() }} этапа
+    </span>
+  </button>
+
+  <div *ngIf="isListOpen()" class="dropdown">
+    <div class="select-all">
+      <input
+        type="checkbox"
+        [checked]="isAllSelected()"
+        (change)="toggleSelectAll($event)"
+        class="classic-checkbox" 
+      />
+      <span class="custom-checkbox"></span>
+      <span>Выбрать все</span>
+    </div>
+
+    <div *ngFor="let category of categories(); trackBy: trackByCategoryId" class="category">
+      <div class="category-header">
+        <input
+          type="checkbox"
+          [checked]="category.isSelected"
+          (change)="toggleCategorySelection(category.id, $event)"
+          class="classic-checkbox" 
+        />
+        <span class="custom-checkbox"></span>
+        <span (click)="toggleCategoryExpansion(category.id)" class="category-name">
+          {{ category.name }}
+        </span>
+      </div>
+
+      <div *ngIf="category.isExpanded" class="items">
+        <div *ngFor="let item of category.items; trackBy: trackByItemId" class="item" [ngClass]="getItemBackgroundClass(item)">
+          <input
+            type="checkbox"
+            [checked]="item.isSelected"
+            (change)="toggleItem(category.id, item.id, $event)"
+            class="classic-checkbox" 
+          />
+          <span class="custom-checkbox"></span>
+          <span>{{ item.name }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
